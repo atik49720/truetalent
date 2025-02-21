@@ -146,6 +146,11 @@ const showingNavigationDropdown = ref(false);
                 </div>
             </header>
 
+            <!-- Development Warning -->
+            <div class="bg-gray-500 text-white text-center py-2">
+                This site is under development. Please inform us if any problem happens at fb.com/bdtruetalent
+            </div>
+
             <!-- Page Content -->
             <main>
                 <slot />

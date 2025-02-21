@@ -22,7 +22,8 @@ class CompanyController extends Controller
     {
         $id = request()->route('company');
         return Inertia::render('Company/Single', [
-            'company' => Company::find($id)
+            'csrf_token' => csrf_token(),
+            'company' => Company::find($id),
         ]);
     }
 
@@ -83,6 +84,21 @@ class CompanyController extends Controller
 
         //dd($Company);
 
+        $Company->save();
+
+        return Inertia::render('Company/Index', [
+            'companies' => Company::all(),
+        ]);
+    }
+
+    public function verify(Request $request)
+    {
+        $request->validate([
+            'company_id' => 'required',
+        ]);
+
+        $Company = Company::find($request->company_id);
+        $Company->verification_status = 'verified';
         $Company->save();
 
         return Inertia::render('Company/Index', [

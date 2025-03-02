@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/company/store', [CompanyController::class, 'store'])->name('company.store');
     Route::post('/company/verify', [CompanyController::class, 'verify'])->name('company.verify');
     Route::get('/company/{company}', [CompanyController::class, 'single'])->name('company.single');
+
+    Route::get('/job/all', [JobController::class, 'index'])->name('job.index');
+    Route::get('/job/create', [JobController::class, 'create'])->name('job.create');
+    Route::post('/job/store', [JobController::class, 'store'])->name('job.store');
+    Route::get('/job/{job}', [JobController::class, 'single'])->name('job.single');
+    Route::get('/edit/{job}', [JobController::class, 'edit'])->name('job.edit');
+    Route::post('/job/{job}', [JobController::class, 'update'])->name('job.update');
+
 });
 
 require __DIR__.'/auth.php';

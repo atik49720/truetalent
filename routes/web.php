@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/company/verify', [CompanyController::class, 'verify'])->name('company.verify');
     Route::get('/company/{company}', [CompanyController::class, 'single'])->name('company.single');
 
+    Route::get('/company/{company}/jobs', [JobController::class, 'companyWiseJobs'])->name('job.companywise');
+
     Route::get('/job/all', [JobController::class, 'index'])->name('job.index');
     Route::get('/job/create', [JobController::class, 'create'])->name('job.create');
     Route::post('/job/store', [JobController::class, 'store'])->name('job.store');

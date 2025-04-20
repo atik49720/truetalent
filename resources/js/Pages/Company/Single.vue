@@ -52,7 +52,7 @@ const { props } = usePage();
                             <input type="hidden" name="company_id" :value="props.company.id">
                             <input type="submit" value="Mark As Verified" class="px-4 py-2 bg-green-600 text-black rounded">
                         </form>
-                        <Link href="/company/{{ props.company.id }}/circulars" class="px-4 py-2 bg-yellow-600 text-black rounded">View Circulars</Link>
+                        <Link :href="`/company/${props.company.id}/jobs`" class="px-4 py-2 bg-yellow-600 text-black rounded">View Circulars</Link>
                     </div>
                 </div>
             </div>

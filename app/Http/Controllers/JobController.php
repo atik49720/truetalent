@@ -29,6 +29,18 @@ class JobController extends Controller
         ]);
     }
 
+    public function companyWiseJobs()
+    {
+        $companyId = request()->route('company');
+        $jobs = Job::where('company_id', $companyId)->get();
+        $company = Company::find($companyId);
+        return Inertia::render('Job/CompanyWise', [
+            'csrf_token' => csrf_token(),
+            'jobs' => $jobs,
+            'company' => $company,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

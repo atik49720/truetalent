@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserInfoController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,11 +30,15 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
+    Route::get('/profile/update', [UserInfoController::class, 'index'])->name('profile.complete.index');
+    Route::post('/profile/update', [UserInfoController::class, 'store'])->name('profile.complete.store');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -43,6 +50,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/company/{company}', [CompanyController::class, 'single'])->name('company.single');
 
     Route::get('/company/{company}/jobs', [JobController::class, 'companyWiseJobs'])->name('job.companywise');
+
+    Route::get('/job/{job}/applicants', [JobApplicationController::class, 'applicants'])->name('job.application.applicants');
+    Route::get('/job/{job}/apply', [JobApplicationController::class, 'index'])->name('job.application.index');
+    Route::post('/job/{job}/apply', [JobApplicationController::class, 'store'])->name('job.application.store');
 
     Route::get('/job/all', [JobController::class, 'index'])->name('job.index');
     Route::get('/job/create', [JobController::class, 'create'])->name('job.create');

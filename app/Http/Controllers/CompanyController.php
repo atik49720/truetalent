@@ -21,8 +21,10 @@ class CompanyController extends Controller
     public function single()
     {
         $id = request()->route('company');
+        $authUser = auth()->user();
         return Inertia::render('Company/Single', [
             'csrf_token' => csrf_token(),
+            'authUser' => $authUser,
             'company' => Company::find($id),
         ]);
     }

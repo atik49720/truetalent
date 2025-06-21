@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('responsibilities');
             $table->string('benefits');
 
-            $table->string('status')->default('pending');
+            $table->string('status')->default('hiring');
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->unsignedBigInteger('created_by');

@@ -71,6 +71,7 @@ const showingNavigationDropdown = ref(false);
 
                                     <template #content>
                                         <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
+                                        <DropdownLink :href="route('profile.complete.index')"> Update Profile </DropdownLink>
                                         <DropdownLink :href="route('logout')" method="post" as="button">
                                             Log Out
                                         </DropdownLink>
@@ -151,7 +152,7 @@ const showingNavigationDropdown = ref(false);
 
             <!-- Development Warning -->
             <div class="bg-gray-500 text-white text-center py-2">
-                This site is under development. Please inform us if any problem happens at fb.com/bdtruetalent
+                This site is under development. If any problem happens, please inform us at fb.com/bdtruetalent
             </div>
 
             <!-- Page Content -->

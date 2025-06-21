@@ -47,7 +47,7 @@ const { props } = usePage();
                         </div>
                     </div>
                     <div class="flex justify-center space-x-4 p-4">
-                        <form v-if="props.company.verification_status === 'pending'" method="POST" action="/company/verify" class="flex justify-center items-center">
+                        <form v-if="props.company.verification_status === 'pending' && props.authUser.id === 1" method="POST" action="/company/verify" class="flex justify-center items-center">
                             <input type="hidden" name="_token" :value="props.csrf_token">
                             <input type="hidden" name="company_id" :value="props.company.id">
                             <input type="submit" value="Mark As Verified" class="px-4 py-2 bg-green-600 text-black rounded">

@@ -3,7 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 
 const { props } = usePage();
-console.log(props.job);
+
 </script>
 
 <template>
@@ -27,9 +27,17 @@ console.log(props.job);
                             </p>
                             <p class="mb-4"><strong>Description:</strong> {{ props.job.description }}</p>
                             <p class="mb-4"><strong>Location:</strong> {{ props.job.location }}</p>
-                            <p class="mb-4"><strong>Salary:</strong> {{ props.job.salary }}</p>
+                            <p class="mb-4"><strong>Salary:</strong> {{ props.job.salary }}  {{ props.job.currency }}</p>
                             <p class="mb-4"><strong>Posted at:</strong> {{ props.job.created_at }}</p>
                         </div>
+                    </div>
+                    <div class="flex justify-center space-x-4 p-4">
+                        <template v-if="props.job.created_by === props.auth.user.id">
+                            <Link :href="`/job/${props.job.id}/applicants`" class="px-4 py-2 bg-green-600 text-white rounded">View Applicants</Link>
+                        </template>
+                        <template v-else>
+                            <Link :href="`/job/${props.job.id}/apply`" class="px-4 py-2 bg-yellow-600 text-black rounded">Apply</Link>
+                        </template>
                     </div>
                 </div>
             </div>
